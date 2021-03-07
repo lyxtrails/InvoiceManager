@@ -3,6 +3,20 @@
     <output-path>$PROJECT_DIR$/out/artifacts/InvoiceManager_jar</output-path>
     <root id="archive" name="InvoiceManager.jar">
       <element id="module-output" name="InvoiceManager" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/io-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/svg-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/hyph-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/pdfa-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/sign-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/forms-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/kernel-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/layout-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/pdftest-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/barcodes-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/font-asian-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/iText7/styled-xml-parser-7.1.14.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/slf4j-simple-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/lib/slf4j-api-1.7.25.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
