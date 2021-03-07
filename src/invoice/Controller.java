@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.Date;
@@ -44,8 +45,6 @@ public class Controller implements Initializable {
     public TextField mTotalLaborCostTextField;
     public TextField mTotalCostTextField;
 
-    private static String FILE_ROOT_PATH =
-            Paths.get(System.getProperty("user.home"), "Desktop", "test_invoices").toString();
 
     public void exitApplication(ActionEvent e) {
         Stage stage = (Stage) mRootPane.getScene().getWindow();
@@ -190,12 +189,13 @@ public class Controller implements Initializable {
         );
         InvoiceData invoiceData = new InvoiceData(invoiceMetadata, rows, cost);
 
-        String filepath = InvoicePDFCreator.getInstance().createFile(FILE_ROOT_PATH, invoiceData);
+        String filepath = InvoicePDFCreator.getInstance().createFile(invoiceData);
 
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(mRootPane.getScene().getWindow());
         VBox comp = new VBox();
+        comp.setAlignment(Pos.CENTER);
         Label label = new Label("PDF文件已保存: " + filepath);
         label.setAlignment(Pos.CENTER);
         comp.getChildren().add(label);

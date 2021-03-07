@@ -68,23 +68,18 @@ class InvoiceData {
     public String getDateString() {
         return dateFormat.format(this.metadata.date);
     }
-
     public String getDateForFilename() {
         return filenameDateFormat.format(this.metadata.date);
     }
-
     public List<Row> getRows() {
         return this.rows;
     }
-
     public String getTotalMaterialCost() {
         return this.cost.material;
     }
-
     public String getTotalLaborCost() {
         return this.cost.labor;
     }
-
     public String getTotalCost() {
         return this.cost.total;
     }

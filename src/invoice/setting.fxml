@@ -3,9 +3,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="mSettingPane" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invoice.SettingController">
+<AnchorPane fx:id="mSettingPane" prefHeight="250.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invoice.SettingController">
    <children>
-      <Button layoutX="100.0" layoutY="0.0" mnemonicParsing="false" text="保存" />
-      <Button fx:id="mCloseButton" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#closeWindow" text="取消" />
+
+      <Label fx:id="fileSavePathLabel" layoutX="25.0" layoutY="21.0" text="文件保存路径" />
+      <TextField fx:id="fileSavePathTextField" layoutX="118.0" layoutY="16.0" prefHeight="27.0" prefWidth="244.0" />
+
+      <Label fx:id="companyNameLabel" layoutX="25.0" layoutY="55.0" text="公司名称" />
+      <TextField fx:id="companyNameTextField" layoutX="118.0" layoutY="50.0" prefHeight="27.0" prefWidth="244.0" />
+
+      <Label fx:id="companyPhoneNumberLabel" layoutX="25.0" layoutY="89.0" text="公司电话" />
+      <TextField fx:id="companyPhoneNumberTextField" layoutX="118.0" layoutY="84.0" prefHeight="27.0" prefWidth="244.0" />
+
+      <Label fx:id="companyEmailLabel" layoutX="25.0" layoutY="125.0" text="公司邮件" />
+      <TextField fx:id="companyEmailTextField" layoutX="118.0" layoutY="120.0" prefHeight="27.0" prefWidth="244.0" />
+
+      <Button fx:id="saveButton" layoutX="247.0" layoutY="193.0" mnemonicParsing="false" onAction="#saveConfig" prefHeight="30.0" prefWidth="80.0" text="保存" />
+      <Button fx:id="mCloseButton" layoutX="48.0" layoutY="193.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="80.0" text="取消" />
    </children>
 </AnchorPane>

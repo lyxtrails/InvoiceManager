@@ -3,6 +3,7 @@ package invoice;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -55,31 +56,37 @@ public class InvoicePDFCreator {
         return Paths.get(rootPath, filename + ".pdf").toString();
     }
 
-    public static String createFile(String rootPath, InvoiceData invoiceData) {
-        File directory = new File(rootPath);
+    public static String createFile(InvoiceData invoiceData) {
+        Map<String, String> configs = Config.getConfigurations();
+        String fileSavePath = configs.get(Config.FILE_SAVE_PATH_KEY);
+        String companyName = configs.get(Config.COMPANY_NAME_KEY);
+        String companyPhoneNumber = configs.get(Config.COMPANY_PHONE_NUMBER_KEY);
+        String companyEmail = configs.get(Config.COMPANY_EMAIL_KEY);
+
+        File directory = new File(fileSavePath);
         if (!directory.exists()){
             directory.mkdirs();
         }
-        String filepath = getInstance().getFilepath(rootPath, invoiceData);
+        String filepath = getInstance().getFilepath(fileSavePath, invoiceData);
         try {
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(filepath));
             Document document = new Document(pdfDoc, PageSize.LETTER);
 
             // Set document info.
             PdfDocumentInfo docInfo = pdfDoc.getDocumentInfo();
-            docInfo.setTitle(getInstance().COMPANY_NAME);
+            docInfo.setTitle(companyName);
 
             // Title
             Table table = new Table(1)
                     .setBorderTop(new SolidBorder(1))
                     .setWidth(UnitValue.createPercentValue(100));
             table.addCell(InvoiceElementFactory.getCenteredNoBorderCell(
-                    getInstance().COMPANY_NAME, 22)
+                    companyName, 22)
                     .setBold());
             table.addCell(InvoiceElementFactory.getCenteredNoBorderCell(
-                    getInstance().COMPANY_PHONE_NUMBERS, 12));
+                    companyPhoneNumber, 12));
             table.addCell(InvoiceElementFactory.getCenteredNoBorderCell(
-                    getInstance().COMPANY_EMAIL, 12));
+                    companyEmail, 12));
             document.add(table);
 
             document.add(InvoiceElementFactory.getEmptySpace(15));
