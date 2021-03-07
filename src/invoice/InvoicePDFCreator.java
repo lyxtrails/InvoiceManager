@@ -144,7 +144,7 @@ public class InvoicePDFCreator {
             List<InvoiceData.Row> rows = invoiceData.getRows();
             for (int i = 0; i < rows.size(); i++) {
                 InvoiceData.Row row = rows.get(i);
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(i))));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(i+1))));
                 table.addCell(new Cell().add(new Paragraph(row.workDescription)));
                 table.addCell(new Cell().add(new Paragraph("$"+row.materialCost))
                         .setTextAlignment(TextAlignment.CENTER));
