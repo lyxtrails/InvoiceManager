@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mSettingPane" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invoice.SettingController">
+   <children>
+      <Button layoutX="100.0" layoutY="0.0" mnemonicParsing="false" text="保存" />
+      <Button fx:id="mCloseButton" layoutX="0.0" layoutY="0.0" mnemonicParsing="false" onAction="#closeWindow" text="取消" />
+   </children>
+</AnchorPane>

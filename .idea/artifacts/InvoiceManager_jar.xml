@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="InvoiceManager:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InvoiceManager_jar</output-path>
+    <root id="archive" name="InvoiceManager.jar">
+      <element id="module-output" name="InvoiceManager" />
+    </root>
+  </artifact>
+</component>

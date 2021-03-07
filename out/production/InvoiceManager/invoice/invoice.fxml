@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invoice.Controller">
+   <children>
+      <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="文件">
+            <items>
+                  <MenuItem fx:id="mSettingMenuItem" mnemonicParsing="false" onAction="#openSetting" text="设置" />
+              <MenuItem fx:id="mFileCloseMenuItem" mnemonicParsing="false" onAction="#exitApplication" text="退出" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+
+      <Label fx:id="mCustomerNameLabel" layoutX="21.0" layoutY="39.0" text="客户姓名" />
+       <TextField fx:id="mCustomerNameTextField" layoutX="101.0" layoutY="34.0" prefHeight="27.0" prefWidth="188.0" AnchorPane.leftAnchor="100.0" />
+      <Label fx:id="mCustomerPhoneLabel" layoutX="350.0" layoutY="39.0" text="客户电话" />
+       <TextField fx:id="mCustomerPhoneTextField" layoutX="424.0" layoutY="34.0" prefHeight="27.0" prefWidth="188.0" />
+      <Label fx:id="mCustomerAddressLabel" layoutX="21.0" layoutY="72.0" text="客户地址" />
+       <TextField fx:id="mCustomerAddressTextField" layoutX="101.0" layoutY="67.0" prefHeight="27.0" prefWidth="1004.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="20.0" />
+      <Label fx:id="mDateLabel" layoutX="32.0" layoutY="107.0" text="日期" />
+      <DatePicker fx:id="mDateDatePicker" layoutX="101.0" layoutY="102.0" AnchorPane.leftAnchor="100.0" />
+
+      <TabPane fx:id="mInvoiceTabPane" layoutX="14.0" layoutY="136.0" prefHeight="119.0" prefWidth="704.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="分类">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="mFloorNumberLabel" layoutX="14.0" layoutY="6.0" text="楼层" />
+                        <ChoiceBox fx:id="mFloorNumberChoiceBox" layoutX="14.0" layoutY="29.0" prefHeight="27.0" prefWidth="92.0" />
+                        <TextField fx:id="mFloorNumberTextField" layoutX="14.0" layoutY="56.0" prefHeight="27.0" prefWidth="92.0" />
+
+                        <Label fx:id="mPlaceLabel" layoutX="124.0" layoutY="6.0" text="地点" />
+                        <ChoiceBox fx:id="mPlaceChoiceBox" layoutX="124.0" layoutY="29.0" prefWidth="150.0" />
+                        <TextField fx:id="mPlaceTextField" layoutX="124.0" layoutY="56.0" prefHeight="27.0" prefWidth="150.0" />
+
+                        <Label fx:id="mActionLabel" layoutX="297.0" layoutY="6.0" text="工作" />
+                        <ChoiceBox fx:id="mActionChoiceBox" layoutX="297.0" layoutY="29.0" prefHeight="27.0" prefWidth="188.0" />
+                        <TextField fx:id="mActionTextField" layoutX="297.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
+
+                        <Label fx:id="mObjectLabel" layoutX="502.0" layoutY="6.0" text="物体" />
+                        <ChoiceBox fx:id="mObjectChoiceBox" layoutX="502.0" layoutY="29.0" prefHeight="27.0" prefWidth="188.0" />
+                        <TextField fx:id="mObjectTextField" layoutX="502.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="自定义">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="mCustomWorkDescriptionTextArea" layoutX="10.0" layoutY="7.0" prefHeight="76.0" prefWidth="682.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+
+       <Label fx:id="mMaterialCostLabel" layoutX="731.0" layoutY="136.0" text="材料费" />
+       <TextField fx:id="mMaterialCostTextField" layoutX="731.0" layoutY="156.0" prefHeight="29.0" prefWidth="111.0" />
+       <Label fx:id="mLaborCostLabel" layoutX="731.0" layoutY="200.0" text="人工费" />
+       <TextField fx:id="mLaborCostTextField" layoutX="731.0" layoutY="217.0" prefHeight="29.0" prefWidth="111.0" />
+
+       <Button fx:id="mAddWorkItemButton" layoutX="870.0" layoutY="174.0" mnemonicParsing="false" onAction="#addWorkItem" prefHeight="52.0" prefWidth="69.0" text="添加" />
+       <Button fx:id="mRemoveWorkItemButton" layoutX="974.0" layoutY="174.0" mnemonicParsing="false" onAction="#removeWorkItem" prefHeight="52.0" prefWidth="69.0" text="删除" />
+
+       <TableView fx:id="mInvoicePayloadTableView" layoutX="20.0" layoutY="264.0" prefHeight="216.0" prefWidth="1085.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+           <columns>
+               <TableColumn fx:id="mWorkDescriptionTableColumn" editable="false" prefWidth="461.0" sortable="false" text="描述" />
+               <TableColumn fx:id="mWorkChineseDescriptionTableColumn" editable="false" prefWidth="461.0" sortable="false" text="描述(中文)" />
+               <TableColumn fx:id="mMaterialCostTableColumn" minWidth="0.0" prefWidth="113.0" text="材料费" />
+               <TableColumn fx:id="mLaborCostTableColumn" prefWidth="118.0" text="人工费" />
+           </columns>
+       </TableView>
+
+       <Button layoutX="22.0" layoutY="557.0" mnemonicParsing="false" onAction="#saveToPDF" prefHeight="27.0" prefWidth="99.0" text="保存为PDF" />
+      <TextField fx:id="mTotalMaterialCostTextField" editable="false" layoutX="85.0" layoutY="490.0" prefHeight="27.0" prefWidth="92.0" />
+      <Label fx:id="mTotalMaterialCostLabel" layoutX="19.0" layoutY="495.0" text="总材料费" />
+      <Label fx:id="mTotalLaborCostLabel" layoutX="205.0" layoutY="495.0" text="总人工费" />
+      <TextField fx:id="mTotalLaborCostTextField" editable="false" layoutX="266.0" layoutY="490.0" prefHeight="27.0" prefWidth="92.0" />
+      <Label fx:id="mTotalCostLabel" layoutX="26.0" layoutY="528.0" text="总费用" />
+      <TextField fx:id="mTotalCostTextField" editable="false" layoutX="85.0" layoutY="523.0" prefHeight="27.0" prefWidth="92.0" />
+   </children>
+</AnchorPane>
