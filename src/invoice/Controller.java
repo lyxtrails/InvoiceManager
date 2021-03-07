@@ -30,9 +30,13 @@ public class Controller implements Initializable {
     public DatePicker mDateDatePicker;
     public TabPane mInvoiceTabPane;
     public ChoiceBox<String> mFloorNumberChoiceBox;
+    public TextField mFloorNumberTextField;
     public ChoiceBox<String> mPlaceChoiceBox;
+    public TextField mPlaceTextField;
     public ChoiceBox<String> mActionChoiceBox;
-    public ChoiceBox<String> mObjectChoiceBox;
+    public TextField mActionTextField;
+    public ChoiceBox<String> mTargetObjectChoiceBox;
+    public TextField mTargetObjectTextField;
     public TextArea mCustomWorkDescriptionTextArea;
     public TextField mMaterialCostTextField;
     public TextField mLaborCostTextField;
@@ -75,8 +79,8 @@ public class Controller implements Initializable {
         for (Map.Entry<String,String> entry : Translator.actionTranslation.entrySet()) {
             mActionChoiceBox.getItems().add(entry.getKey());
         }
-        for (Map.Entry<String,String> entry : Translator.objectTranslation.entrySet()) {
-            mObjectChoiceBox.getItems().add(entry.getKey());
+        for (Map.Entry<String,String> entry : Translator.targetObjectTranslation.entrySet()) {
+            mTargetObjectChoiceBox.getItems().add(entry.getKey());
         }
         mWorkDescriptionTableColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         mWorkChineseDescriptionTableColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionCN"));
@@ -86,9 +90,11 @@ public class Controller implements Initializable {
     }
 
     public void addWorkItem(ActionEvent e) {
+        double materialCost = 0.0;
+        double laborCost = 0.0;
         try {
-            Double.parseDouble(mMaterialCostTextField.getText());
-            Double.parseDouble(mLaborCostTextField.getText());
+            materialCost += Double.parseDouble(mMaterialCostTextField.getText());
+            laborCost += Double.parseDouble(mLaborCostTextField.getText());
         } catch (NumberFormatException nfe) {
             showErrorWindow("材料费或者人工费格式不正确");
             return;
@@ -96,18 +102,23 @@ public class Controller implements Initializable {
         String workDescription = "";
         String workDescriptionCN = "";
         if (mInvoiceTabPane.getSelectionModel().getSelectedIndex() == 0) {
+            String floorNumber = mFloorNumberTextField.getText();
+            floorNumber = !floorNumber.isEmpty() ? floorNumber
+                    : mFloorNumberChoiceBox.getSelectionModel().getSelectedItem();
+            String place = mPlaceTextField.getText();
+            place = !place.isEmpty() ? place
+                    : mPlaceChoiceBox.getSelectionModel().getSelectedItem();
+            String targetObject = mTargetObjectTextField.getText();
+            targetObject = !targetObject.isEmpty() ? targetObject
+                    : mTargetObjectChoiceBox.getSelectionModel().getSelectedItem();
+            String action = mActionTextField.getText();
+            action = !action.isEmpty() ? action
+                    : mActionChoiceBox.getSelectionModel().getSelectedItem();
+
             workDescription = buildWorkDescription(
-                    mFloorNumberChoiceBox.getSelectionModel().getSelectedItem(),
-                    mPlaceChoiceBox.getSelectionModel().getSelectedItem(),
-                    mActionChoiceBox.getSelectionModel().getSelectedItem(),
-                    mObjectChoiceBox.getSelectionModel().getSelectedItem()
-            );
+                    floorNumber, place, action, targetObject);
             workDescriptionCN = buildWorkDescriptionCN(
-                    mFloorNumberChoiceBox.getSelectionModel().getSelectedItem(),
-                    mPlaceChoiceBox.getSelectionModel().getSelectedItem(),
-                    mActionChoiceBox.getSelectionModel().getSelectedItem(),
-                    mObjectChoiceBox.getSelectionModel().getSelectedItem()
-            );
+                    floorNumber, place, action, targetObject);
         } else if (mInvoiceTabPane.getSelectionModel().getSelectedIndex() == 1) {
             workDescription = mCustomWorkDescriptionTextArea.getText();
         }
@@ -115,23 +126,34 @@ public class Controller implements Initializable {
             mInvoicePayloadTableView.getItems().add(new InvoiceTableRow(
                     workDescription,
                     workDescriptionCN,
-                    mMaterialCostTextField.getText(),
-                    mLaborCostTextField.getText()));
+                    String.valueOf(materialCost),
+                    String.valueOf(laborCost)));
             refreshTotalCost();
         }
     }
 
-    public String buildWorkDescription(String floor, String place, String action, String object) {
+    public String buildWorkDescription(String floor, String place, String action, String target) {
+        String translatedFloor = Translator.floorTranslation.containsKey(floor)
+                ? Translator.floorTranslation.get(floor) : floor;
+        String translatedPlace = Translator.placeTranslation.containsKey(place)
+                ? Translator.placeTranslation.get(place) : place;
+        String translatedAction = Translator.actionTranslation.containsKey(action)
+                ? Translator.actionTranslation.get(action) : action;
+        String translatedTarget =Translator.targetObjectTranslation.containsKey(target) ?
+                Translator.targetObjectTranslation.get(target) : target;
+
         return String.format("%s %s in %s %s",
-                Translator.actionTranslation.get(action),
-                Translator.objectTranslation.get(object),
-                Translator.floorTranslation.get(floor),
-                Translator.placeTranslation.get(place)
-                );
+                translatedAction, translatedTarget,
+                translatedFloor, translatedPlace);
     }
 
-    public String buildWorkDescriptionCN(String floor, String place, String action, String object) {
-        return String.format("%s层%s，%s%s", floor, place, action, object);
+    public String buildWorkDescriptionCN(String floor, String place, String action, String target) {
+        floor = Translator.floorTranslation.containsKey(floor) ? floor : " "+floor+" ";
+        place = Translator.placeTranslation.containsKey(place) ? place : " "+place+" ";
+        action = Translator.actionTranslation.containsKey(action) ? action : " "+action+" ";
+        target = Translator.targetObjectTranslation.containsKey(target) ? target: " "+target+" ";
+
+        return String.format("%s%s，%s%s", floor, place, action, target);
     }
 
     public void removeWorkItem(ActionEvent e) {

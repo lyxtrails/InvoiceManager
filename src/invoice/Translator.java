@@ -4,11 +4,13 @@ import java.util.HashMap;
 
 public class Translator {
     public static HashMap<String, String> floorTranslation = new HashMap<String, String>() {{
-        put("1", "the first floor");
-        put("2", "the second floor");
-        put("3", "the third floor");
+        put("", "");
+        put("1楼", "the first floor");
+        put("2楼", "the second floor");
+        put("3楼", "the third floor");
     }};
     public static HashMap<String, String> placeTranslation = new HashMap<String, String>() {{
+        put("", "");
         put("主卧", "master bedroom");
         put("主卧储衣间", "master bedroom closet");
         put("卧室", "bedroom");
@@ -20,11 +22,13 @@ public class Translator {
         put("阁楼", "attic");
     }};
     public static HashMap<String, String> actionTranslation = new HashMap<String, String>() {{
+        put("", "");
         put("维修", "fix");
         put("更换", "replace");
         put("油漆", "paint");
     }};
-    public static HashMap<String, String> objectTranslation = new HashMap<String, String>() {{
+    public static HashMap<String, String> targetObjectTranslation = new HashMap<String, String>() {{
+        put("", "");
         put("水龙头", "faucet");
         put("浴缸", "bathtub");
         put("水管", "water pipe");

@@ -43,9 +43,9 @@
                         <ChoiceBox fx:id="mActionChoiceBox" layoutX="297.0" layoutY="29.0" prefHeight="27.0" prefWidth="188.0" />
                         <TextField fx:id="mActionTextField" layoutX="297.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
 
-                        <Label fx:id="mObjectLabel" layoutX="502.0" layoutY="6.0" text="物体" />
-                        <ChoiceBox fx:id="mObjectChoiceBox" layoutX="502.0" layoutY="29.0" prefHeight="27.0" prefWidth="188.0" />
-                        <TextField fx:id="mObjectTextField" layoutX="502.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
+                        <Label fx:id="mTargetObjectLabel" layoutX="502.0" layoutY="6.0" text="物体" />
+                        <ChoiceBox fx:id="mTargetObjectChoiceBox" layoutX="502.0" layoutY="29.0" prefHeight="27.0" prefWidth="188.0" />
+                        <TextField fx:id="mTargetObjectTextField" layoutX="502.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
