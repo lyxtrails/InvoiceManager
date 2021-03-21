@@ -146,20 +146,23 @@ public class InvoicePDFCreator {
                 InvoiceData.Row row = rows.get(i);
                 table.addCell(new Cell().add(new Paragraph(String.valueOf(i+1))));
                 table.addCell(new Cell().add(new Paragraph(row.workDescription)));
-                table.addCell(new Cell().add(new Paragraph("$"+row.materialCost))
+                table.addCell(new Cell().add(new Paragraph(row.materialCost))
                         .setTextAlignment(TextAlignment.CENTER));
-                table.addCell(new Cell().add(new Paragraph("$"+row.laborCost))
+                table.addCell(new Cell().add(new Paragraph(row.laborCost))
+                        .setTextAlignment(TextAlignment.CENTER));
+            }
+
+            if (invoiceData.getTotalMaterialCost() != "" && invoiceData.getTotalLaborCost() != "") {
+                table.addCell(new Cell().add(new Paragraph("")));
+                table.addCell(new Cell().add(new Paragraph("Total")));
+                table.addCell(new Cell().add(new Paragraph(invoiceData.getTotalMaterialCost()))
+                        .setTextAlignment(TextAlignment.CENTER));
+                table.addCell(new Cell().add(new Paragraph(invoiceData.getTotalLaborCost()))
                         .setTextAlignment(TextAlignment.CENTER));
             }
             table.addCell(new Cell().add(new Paragraph("")));
-            table.addCell(new Cell().add(new Paragraph("Total")));
-            table.addCell(new Cell().add(new Paragraph("$"+invoiceData.getTotalMaterialCost()))
-                    .setTextAlignment(TextAlignment.CENTER));
-            table.addCell(new Cell().add(new Paragraph("$"+invoiceData.getTotalLaborCost()))
-                    .setTextAlignment(TextAlignment.CENTER));
-            table.addCell(new Cell().add(new Paragraph("")));
             table.addCell(new Cell().add(new Paragraph("Total (Material + Labor)")));
-            table.addCell(new Cell(1,2).add(new Paragraph("$"+invoiceData.getTotalCost()))
+            table.addCell(new Cell(1,2).add(new Paragraph(invoiceData.getTotalCost()))
                     .setTextAlignment(TextAlignment.CENTER));
             document.add(table);
 

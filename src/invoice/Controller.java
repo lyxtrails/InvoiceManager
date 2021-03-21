@@ -48,6 +48,7 @@ public class Controller implements Initializable {
     public TextField mTotalMaterialCostTextField;
     public TextField mTotalLaborCostTextField;
     public TextField mTotalCostTextField;
+    public CheckBox mOnlyTotalCostCheckBox;
 
 
     public void exitApplication(ActionEvent e) {
@@ -189,6 +190,7 @@ public class Controller implements Initializable {
     }
 
     public void saveToPDF(ActionEvent actionEvent) {
+        Boolean onlyTotalCostMode = mOnlyTotalCostCheckBox.isSelected();
         InvoiceData.Metadata invoiceMetadata = new InvoiceData.Metadata(
                 mCustomerNameTextField.getText(),
                 mCustomerPhoneTextField.getText(),
@@ -199,15 +201,17 @@ public class Controller implements Initializable {
         for (int i = 0; i < mInvoicePayloadTableView.getItems().size(); i++) {
             InvoiceData.Row row = new InvoiceData.Row(
                     mWorkDescriptionTableColumn.getCellObservableValue(i).getValue().toString(),
-                    mMaterialCostTableColumn.getCellObservableValue(i).getValue().toString(),
-                    mLaborCostTableColumn.getCellObservableValue(i).getValue().toString()
+                    onlyTotalCostMode ? "" :
+                            "$" + mMaterialCostTableColumn.getCellObservableValue(i).getValue().toString(),
+                    onlyTotalCostMode ? "" :
+                            "$" + mLaborCostTableColumn.getCellObservableValue(i).getValue().toString()
             );
             rows.add(row);
         }
         InvoiceData.Cost cost = new InvoiceData.Cost(
-                mTotalMaterialCostTextField.getText(),
-                mTotalLaborCostTextField.getText(),
-                mTotalCostTextField.getText()
+                onlyTotalCostMode ? "" : "$" + mTotalMaterialCostTextField.getText(),
+                onlyTotalCostMode ? "" : "$" + mTotalLaborCostTextField.getText(),
+                "$" + mTotalCostTextField.getText()
         );
         InvoiceData invoiceData = new InvoiceData(invoiceMetadata, rows, cost);
 
@@ -224,6 +228,11 @@ public class Controller implements Initializable {
         Scene scene = new Scene(comp, 500, 150);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void toggleOnlyTotalCost(ActionEvent actionEvent) {
+        mTotalCostTextField.setEditable(mOnlyTotalCostCheckBox.isSelected());
+        refreshTotalCost();
     }
 
     public class InvoiceTableRow {

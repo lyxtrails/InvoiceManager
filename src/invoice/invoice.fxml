@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="mRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invoice.Controller">
+<AnchorPane fx:id="mRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="invoice.Controller">
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -84,5 +85,9 @@
       <TextField fx:id="mTotalLaborCostTextField" editable="false" layoutX="266.0" layoutY="490.0" prefHeight="27.0" prefWidth="92.0" />
       <Label fx:id="mTotalCostLabel" layoutX="26.0" layoutY="528.0" text="总费用" />
       <TextField fx:id="mTotalCostTextField" editable="false" layoutX="85.0" layoutY="523.0" prefHeight="27.0" prefWidth="92.0" />
+      <CheckBox fx:id="mOnlyTotalCostCheckBox" layoutX="205.0" layoutY="528.0" mnemonicParsing="false" onAction="#toggleOnlyTotalCost" text="只输入总费用" />
    </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </AnchorPane>
