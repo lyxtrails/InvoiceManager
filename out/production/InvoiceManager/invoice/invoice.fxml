@@ -71,8 +71,8 @@
 
        <TableView fx:id="mInvoicePayloadTableView" layoutX="20.0" layoutY="264.0" prefHeight="216.0" prefWidth="1085.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
            <columns>
-               <TableColumn fx:id="mWorkDescriptionTableColumn" editable="false" prefWidth="461.0" sortable="false" text="描述" />
-               <TableColumn fx:id="mWorkChineseDescriptionTableColumn" editable="false" prefWidth="461.0" sortable="false" text="描述(中文)" />
+               <TableColumn fx:id="mWorkDescriptionTableColumn" editable="false" prefWidth="400.0" sortable="false" text="描述" />
+               <TableColumn fx:id="mWorkChineseDescriptionTableColumn" editable="false" prefWidth="400.0" sortable="false" text="描述(中文)" />
                <TableColumn fx:id="mMaterialCostTableColumn" minWidth="0.0" prefWidth="113.0" text="材料费" />
                <TableColumn fx:id="mLaborCostTableColumn" prefWidth="118.0" text="人工费" />
            </columns>
